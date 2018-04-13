@@ -46,7 +46,7 @@ COPY --from=build /tfs/config.lua.dist /opt/tfs/
 COPY --from=build /tfs/data /opt/tfs/data
 COPY --from=build /tfs/schema.sql /opt/tfs/
 
-WORKDIR ["/opt/tfs"]
+WORKDIR "/opt/tfs"
 EXPOSE 7171 7172
 
 ENTRYPOINT ["/opt/tfs/tfs"]
