@@ -15,3 +15,15 @@ If you need help, please visit the [support forum on OTLand](https://otland.net/
 ### Issues
 
 We use the [issue tracker on GitHub](https://github.com/otland/forgottenserver/issues). Keep in mind that everyone who is watching the repository gets notified by e-mail when there is activity, so be thoughtful and avoid writing comments that aren't meaningful for an issue (e.g. "+1"). If you'd like for an issue to be fixed faster, you should either fix it yourself and submit a pull request, or place a bounty on the issue.
+
+### Run using docker-compose
+
+```
+cp config.lua.dist config.lua
+sed -i -e 's|mysqlHost = "127.0.0.1"|mysqlHost = "mysql"|' config.lua
+sed -i -e 's|mysqlUser = "forgottenserver"|mysqlUser = "root"|' config.lua
+sed -i -e 's|mysqlPass = ""|mysqlPass = "root"|' config.lua
+docker-compose up -d mysql
+sleep 10 && mysql -h 127.0.0.1 -u root -proot forgottenserver < schema.sql
+docker-compose up -d
+```
